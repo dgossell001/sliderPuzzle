@@ -14,5 +14,10 @@ namespace sliderPuzzle
         {
             InitializeComponent();
         }
+
+        void OnBtnLoadPuzzle(object sender, EventArgs args)
+        {
+            //frMasterPic.Children.Add(xx);
+        }
     }
 }

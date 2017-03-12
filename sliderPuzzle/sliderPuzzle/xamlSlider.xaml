@@ -25,7 +25,8 @@
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <BoxView
+        <Frame
+          x:Name="frMasterPic"
           BackgroundColor="#888888"
           HeightRequest="80"
           WidthRequest="80"
@@ -60,7 +61,7 @@
           <ColumnDefinition Width="70" />
         </Grid.ColumnDefinitions>
 
-        <BoxView Grid.Row="0" Grid.Column="0" />
+        <BoxView x:Name="bv00" Grid.Row="0" Grid.Column="0" />
         <BoxView Grid.Row="0" Grid.Column="1" />
         <BoxView Grid.Row="0" Grid.Column="2" />
         <BoxView Grid.Row="0" Grid.Column="3" />
@@ -82,6 +83,8 @@
       </Grid>
 
       <Button
+        x:Name="btnLoadPuzzle"
+        Clicked="OnBtnLoadPuzzle"
         Text="Load the picture"
         TextColor="#FFFFFF"
         BackgroundColor ="#000000"
