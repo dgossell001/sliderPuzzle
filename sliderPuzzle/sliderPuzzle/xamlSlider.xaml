@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sliderPuzzle.xamlSlider">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="BoxView">
+        <Setter Property="BackgroundColor" Value="#808080" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <ContentPage.Content>
+    <ScrollView>
+    <StackLayout>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <BoxView
+          BackgroundColor="#888888"
+          HeightRequest="80"
+          WidthRequest="80"
+          Grid.Row="0"
+          Grid.Column="0"
+        />
+
+        <Label
+          x:Name="statusLabel"
+          Text="Errors or instructions here."
+          TextColor="#FFFFFF"
+          BackgroundColor="Navy"
+          Grid.Row="0"
+          Grid.Column="1"
+        />
+        
+      </Grid>
+      
+      <Grid
+        HorizontalOptions="Center">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="70" />
+          <RowDefinition Height="70" />
+          <RowDefinition Height="70" />
+          <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="70" />
+          <ColumnDefinition Width="70" />
+          <ColumnDefinition Width="70" />
+          <ColumnDefinition Width="70" />
+        </Grid.ColumnDefinitions>
+
+        <BoxView Grid.Row="0" Grid.Column="0" />
+        <BoxView Grid.Row="0" Grid.Column="1" />
+        <BoxView Grid.Row="0" Grid.Column="2" />
+        <BoxView Grid.Row="0" Grid.Column="3" />
+
+        <BoxView Grid.Row="1" Grid.Column="0" />
+        <BoxView Grid.Row="1" Grid.Column="1" />
+        <BoxView Grid.Row="1" Grid.Column="2" />
+        <BoxView Grid.Row="1" Grid.Column="3" />
+
+        <BoxView Grid.Row="2" Grid.Column="0" />
+        <BoxView Grid.Row="2" Grid.Column="1" />
+        <BoxView Grid.Row="2" Grid.Column="2" />
+        <BoxView Grid.Row="2" Grid.Column="3" />
+
+        <BoxView Grid.Row="3" Grid.Column="0" />
+        <BoxView Grid.Row="3" Grid.Column="1" />
+        <BoxView Grid.Row="3" Grid.Column="2" />
+        <BoxView Grid.Row="3" Grid.Column="3" />
+      </Grid>
+
+      <Button
+        Text="Load the picture"
+        TextColor="#FFFFFF"
+        BackgroundColor ="#000000"
+        HorizontalOptions="Center"
+        />
+      
+    </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>
