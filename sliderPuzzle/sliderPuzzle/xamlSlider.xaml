@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:sliderPuzzle;assembly=sliderPuzzle"
              x:Class="sliderPuzzle.xamlSlider">
 
   <ContentPage.Resources>
     <ResourceDictionary>
-      <Style TargetType="BoxView">
+      <Style TargetType="ContentView">
         <Setter Property="BackgroundColor" Value="#808080" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
@@ -25,8 +28,8 @@
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Frame
-          x:Name="frMasterPic"
+        <ContentView
+          x:Name="cvMasterPic"
           BackgroundColor="#888888"
           HeightRequest="80"
           WidthRequest="80"
@@ -39,6 +42,7 @@
           Text="Errors or instructions here."
           TextColor="#FFFFFF"
           BackgroundColor="Navy"
+          VerticalOptions="End"
           Grid.Row="0"
           Grid.Column="1"
         />
@@ -46,6 +50,7 @@
       </Grid>
       
       <Grid
+        x:Name="grdPictureGrid"
         HorizontalOptions="Center">
         <Grid.RowDefinitions>
           <RowDefinition Height="70" />
@@ -61,25 +66,25 @@
           <ColumnDefinition Width="70" />
         </Grid.ColumnDefinitions>
 
-        <BoxView x:Name="bv00" Grid.Row="0" Grid.Column="0" />
-        <BoxView Grid.Row="0" Grid.Column="1" />
-        <BoxView Grid.Row="0" Grid.Column="2" />
-        <BoxView Grid.Row="0" Grid.Column="3" />
+        <ContentView x:Name="cv00" Grid.Row="0" Grid.Column="0" />
+        <ContentView Grid.Row="0" Grid.Column="1" />
+        <ContentView Grid.Row="0" Grid.Column="2" />
+        <ContentView Grid.Row="0" Grid.Column="3" />
 
-        <BoxView Grid.Row="1" Grid.Column="0" />
-        <BoxView Grid.Row="1" Grid.Column="1" />
-        <BoxView Grid.Row="1" Grid.Column="2" />
-        <BoxView Grid.Row="1" Grid.Column="3" />
+        <ContentView Grid.Row="1" Grid.Column="0" />
+        <ContentView Grid.Row="1" Grid.Column="1" />
+        <ContentView Grid.Row="1" Grid.Column="2" />
+        <ContentView Grid.Row="1" Grid.Column="3" />
 
-        <BoxView Grid.Row="2" Grid.Column="0" />
-        <BoxView Grid.Row="2" Grid.Column="1" />
-        <BoxView Grid.Row="2" Grid.Column="2" />
-        <BoxView Grid.Row="2" Grid.Column="3" />
+        <ContentView Grid.Row="2" Grid.Column="0" />
+        <ContentView Grid.Row="2" Grid.Column="1" />
+        <ContentView Grid.Row="2" Grid.Column="2" />
+        <ContentView Grid.Row="2" Grid.Column="3" />
 
-        <BoxView Grid.Row="3" Grid.Column="0" />
-        <BoxView Grid.Row="3" Grid.Column="1" />
-        <BoxView Grid.Row="3" Grid.Column="2" />
-        <BoxView Grid.Row="3" Grid.Column="3" />
+        <ContentView Grid.Row="3" Grid.Column="0" />
+        <ContentView Grid.Row="3" Grid.Column="1" />
+        <ContentView Grid.Row="3" Grid.Column="2" />
+        <ContentView Grid.Row="3" Grid.Column="3" />
       </Grid>
 
       <Button
