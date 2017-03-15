@@ -66,25 +66,89 @@
           <ColumnDefinition Width="70" />
         </Grid.ColumnDefinitions>
 
-        <ContentView x:Name="cv00" Grid.Row="0" Grid.Column="0" />
-        <ContentView Grid.Row="0" Grid.Column="1" />
-        <ContentView Grid.Row="0" Grid.Column="2" />
-        <ContentView Grid.Row="0" Grid.Column="3" />
+        <ContentView StyleId="cv00" Grid.Row="0" Grid.Column="0" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv01" Grid.Row="0" Grid.Column="1" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv02" Grid.Row="0" Grid.Column="2" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv03" Grid.Row="0" Grid.Column="3" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
 
-        <ContentView Grid.Row="1" Grid.Column="0" />
-        <ContentView Grid.Row="1" Grid.Column="1" />
-        <ContentView Grid.Row="1" Grid.Column="2" />
-        <ContentView Grid.Row="1" Grid.Column="3" />
+        <ContentView StyleId="cv10" Grid.Row="1" Grid.Column="0" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv11" Grid.Row="1" Grid.Column="1" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv12" Grid.Row="1" Grid.Column="2" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv13" Grid.Row="1" Grid.Column="3" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
 
-        <ContentView Grid.Row="2" Grid.Column="0" />
-        <ContentView Grid.Row="2" Grid.Column="1" />
-        <ContentView Grid.Row="2" Grid.Column="2" />
-        <ContentView Grid.Row="2" Grid.Column="3" />
+        <ContentView StyleId="cv20" Grid.Row="2" Grid.Column="0" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv21" Grid.Row="2" Grid.Column="1" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv22" Grid.Row="2" Grid.Column="2" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv23" Grid.Row="2" Grid.Column="3" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
 
-        <ContentView Grid.Row="3" Grid.Column="0" />
-        <ContentView Grid.Row="3" Grid.Column="1" />
-        <ContentView Grid.Row="3" Grid.Column="2" />
-        <ContentView Grid.Row="3" Grid.Column="3" />
+        <ContentView StyleId="cv30" Grid.Row="3" Grid.Column="0" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv31" Grid.Row="3" Grid.Column="1" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv32" Grid.Row="3" Grid.Column="2" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentView StyleId="cv33" Grid.Row="3" Grid.Column="3" >
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnCVTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
       </Grid>
 
       <Button

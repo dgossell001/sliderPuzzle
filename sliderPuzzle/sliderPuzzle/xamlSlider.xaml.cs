@@ -88,5 +88,64 @@ namespace sliderPuzzle
 
 
         }
+
+        void OnCVTapped(object sender, EventArgs args)
+        {
+            // identify the blank cell number, row, and column
+            int intBlankNumber = -1;
+            int intBlankRow = -1;
+            int intBlankColumn = -1;
+
+            for(int i=0; i<16; i++)
+            {
+                ContentView cvBlankCheck = (ContentView)grdPictureGrid.Children[i];
+                if (cvBlankCheck.Content == null) { intBlankNumber = i; }
+            }
+
+            intBlankColumn = intBlankNumber % 4;
+            intBlankRow = intBlankNumber / 4;
+
+            statusLabel.Text = "blank column = " + intBlankColumn.ToString() + "\n" + statusLabel.Text;
+            statusLabel.Text = "blank row = " + intBlankRow.ToString() + "\n" + statusLabel.Text;
+
+            /* *************************************************** **
+             * Identify the tile that was clicked, then it's column and row.
+             * Then check whether it is eligible to move.
+             * *************************************************** */
+            ContentView cvTile = (ContentView)sender;
+            string strName = (string)cvTile.StyleId;
+
+            int intSelectedRow = -1;
+            int intSelectedColumn = -1;
+
+            // a non-blank cell was clicked
+            if (cvTile.Content != null)
+            {
+                // get the row and column for the tile clicked
+                statusLabel.Text = "CV location = " + strName+ "\n" + statusLabel.Text;
+                intSelectedColumn = Convert.ToInt16(strName.Substring(3, 1));
+                intSelectedRow = Convert.ToInt16(strName.Substring(2, 1));
+
+                statusLabel.Text = "tile column = " + intSelectedColumn.ToString() + "\n" + statusLabel.Text;
+                statusLabel.Text = "tile row = " + intSelectedRow.ToString() + "\n" + statusLabel.Text;
+
+                // check if it can move into the blank
+                if((intBlankRow == intSelectedRow && Math.Abs(intBlankColumn - intSelectedColumn) == 1)   // tile is in same row, next column to blank
+                    || (intBlankColumn == intSelectedColumn && Math.Abs(intBlankRow - intSelectedRow) == 1)) // tile is in same column, next row to blank
+                {
+                    statusLabel.Text = "Swap them!\n" + statusLabel.Text;
+                }
+                else
+                {
+                    statusLabel.Text = "CANNOT swap them!!!!!\n" + statusLabel.Text;
+                }
+            }
+            // the blank cell was clicked
+            else
+            {
+                statusLabel.Text = "Click a tile that can move into the blank space.";
+            }
+            
+        }
     }
 }
