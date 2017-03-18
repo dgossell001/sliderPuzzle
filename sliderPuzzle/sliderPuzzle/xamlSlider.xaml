@@ -39,10 +39,10 @@
 
         <Label
           x:Name="statusLabel"
-          Text="Errors or instructions here."
+          Text="Click the button to begin."
           TextColor="#FFFFFF"
           BackgroundColor="Navy"
-          VerticalOptions="End"
+          VerticalOptions="FillAndExpand"
           Grid.Row="0"
           Grid.Column="1"
         />
