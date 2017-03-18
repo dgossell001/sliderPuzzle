@@ -13,10 +13,13 @@ namespace sliderPuzzle
         public xamlSlider()
         {
             InitializeComponent();
+            Application.Current.Properties["GameStatus"] = "Startup";
         }
 
         void OnBtnLoadPuzzle(object sender, EventArgs args)
         {
+            Application.Current.Properties["GameStatus"] = "Playing";
+
             /* *************************************************** **
              * clear out any existing master image and load the new one
              * *************************************************** */
@@ -48,7 +51,8 @@ namespace sliderPuzzle
 
                         Image imgArrayImage = new Image
                         {
-                            Source = ImageSource.FromResource(strFileName)
+                            Source = ImageSource.FromResource(strFileName),
+                            StyleId = r.ToString() + c.ToString()
                         };
 
                         lstImageFiles.Add(imgArrayImage);
@@ -90,86 +94,140 @@ namespace sliderPuzzle
 
         void OnCVTapped(object sender, EventArgs args)
         {
-            bool booCanMove = false;
-            ContentView cvSourceCV = (ContentView)sender;
-            ContentView cvDestinationCV = null;
-
-            // identify the blank cell number, row, and column
-            //  when found, set the destination content view as the blank one
-            int intBlankNumber = -1;
-            int intBlankRow = -1;
-            int intBlankColumn = -1;
-
-            for(int i=0; i<16; i++)
+            // only do this routine if we are playing the game, otherwise display should tell us to load a picture
+            if (Application.Current.Properties["GameStatus"].ToString() == "Playing")
             {
-                ContentView cvBlankCheck = (ContentView)grdPictureGrid.Children[i];
-                if (cvBlankCheck.Content == null)
+                bool booCanMove = false;
+                ContentView cvSourceCV = (ContentView)sender;
+                ContentView cvDestinationCV = null;
+
+                /* *************************************************** **
+                 * identify the blank cell number, row, and column
+                 *  when found, set the destination content view as the blank one
+                 * *************************************************** */
+                int intBlankNumber = -1;
+                int intBlankRow = -1;
+                int intBlankColumn = -1;
+
+                for (int i = 0; i < 16; i++)
                 {
-                    intBlankNumber = i;
-                    cvDestinationCV = cvBlankCheck;
+                    ContentView cvBlankCheck = (ContentView)grdPictureGrid.Children[i];
+                    if (cvBlankCheck.Content == null)
+                    {
+                        intBlankNumber = i;
+                        cvDestinationCV = cvBlankCheck;
+                    }
                 }
-            }
 
-            intBlankColumn = intBlankNumber % 4;
-            intBlankRow = intBlankNumber / 4;
+                intBlankColumn = intBlankNumber % 4;
+                intBlankRow = intBlankNumber / 4;
 
-            /* *************************************************** **
-             * Identify the tile that was clicked, then it's column and row.
-             * Then check whether it is eligible to move.
-             * *************************************************** */
-            string strName = (string)cvSourceCV.StyleId;
+                /* *************************************************** **
+                 * Identify the tile that was clicked, then it's column and row.
+                 * Then check whether it is eligible to move.
+                 * *************************************************** */
+                string strName = (string)cvSourceCV.StyleId;
 
-            int intSelectedRow = -1;
-            int intSelectedColumn = -1;
+                int intSelectedRow = -1;
+                int intSelectedColumn = -1;
 
-            // a non-blank cell was clicked
-            if (cvSourceCV.Content != null)
-            {
-                // get the row and column for the tile clicked
-                intSelectedColumn = Convert.ToInt16(strName.Substring(3, 1));
-                intSelectedRow = Convert.ToInt16(strName.Substring(2, 1));
-
-                // check if it can move into the blank
-                if((intBlankRow == intSelectedRow && Math.Abs(intBlankColumn - intSelectedColumn) == 1)   // tile is in same row, next column to blank
-                    || (intBlankColumn == intSelectedColumn && Math.Abs(intBlankRow - intSelectedRow) == 1)) // tile is in same column, next row to blank
+                // a non-blank cell was clicked
+                if (cvSourceCV.Content != null)
                 {
-                    booCanMove = true;
+                    // get the row and column for the tile clicked
+                    intSelectedColumn = Convert.ToInt16(strName.Substring(3, 1));
+                    intSelectedRow = Convert.ToInt16(strName.Substring(2, 1));
+
+                    // check if it can move into the blank
+                    if ((intBlankRow == intSelectedRow && Math.Abs(intBlankColumn - intSelectedColumn) == 1)   // tile is in same row, next column to blank
+                        || (intBlankColumn == intSelectedColumn && Math.Abs(intBlankRow - intSelectedRow) == 1)) // tile is in same column, next row to blank
+                    {
+                        booCanMove = true;
+                    }
+                    else
+                    {
+                        statusLabel.Text = "You can't move that piece! Pick one next to the blank space.";
+                    }
                 }
+                // the blank cell was clicked
                 else
                 {
-                    statusLabel.Text = "You can't move that piece! Pick one next to the blank space.";
+                    statusLabel.Text = "Click a tile that can move into the blank space.";
+                }
+
+                /* ************************************************** **
+                 * If you can move it, then do so by swapping the image
+                 *  with the blank space.
+                 * ************************************************** */
+                if (booCanMove)
+                {
+                    // Here's the image I'm going to move
+                    Image imgMoveMe = (Image)cvSourceCV.Content;
+
+                    // move it
+                    cvSourceCV.Content = null;  // ctile ell we move FROM becomes blank
+                    cvDestinationCV.Content = imgMoveMe;    // tile we move TO gets the image that was in the source
+
+                    CheckIfDone();
+
                 }
             }
-            // the blank cell was clicked
             else
             {
-                statusLabel.Text = "Click a tile that can move into the blank space.";
+                statusLabel.Text = "Click the button to begin.";
             }
 
-            if(booCanMove)
-            {
-                //Here's the image I'm going to move
-                Image imgMoveMe = (Image)cvSourceCV.Content;
-
-                // move it
-                cvSourceCV.Content = null;
-                cvDestinationCV.Content = imgMoveMe;
-
-                CheckIfDone();
-
-            }
             
         }
 
         void CheckIfDone()
         {
-            bool booAllDone = false;
+            bool booAllDone = true;
 
-            //check if we solved it
+            /* **************************************** **
+             *  Check if we solved it
+             * **************************************** */
+            
+            for (int tile=0; tile < 16; tile++)
+            {
+                ContentView cvTileToCheck = (ContentView)grdPictureGrid.Children[tile];
+
+                // only check image if we are NOT doing tile #
+                if (tile != 12)
+                {
+                    // don't try to check if we have no image
+                    if (cvTileToCheck.Content != null)
+                    {
+                        Image imgPicToCheck = (Image)cvTileToCheck.Content;
+
+                        // set a column and row name for the tile (cv) and the image it contains
+                        string cvRow = cvTileToCheck.StyleId.Substring(2, 1);
+                        string cvColumn = cvTileToCheck.StyleId.Substring(3, 1);
+                        string imgRow = imgPicToCheck.StyleId.Substring(0, 1);
+                        string imgColumn = imgPicToCheck.StyleId.Substring(1, 1);
+
+                        if ((cvRow != imgRow) || (cvColumn != imgColumn))
+                        {
+                            booAllDone = false;
+                        }
+                    }
+                    // else our image is null (and outer loop means it's not #12)
+                    else
+                    {
+                        booAllDone = false;
+                    }
+                }
+                // otherwise, for tile #12 make sure there is no content/image
+                else
+                {
+                    if(cvTileToCheck.Content != null) { booAllDone = false; }
+                }
+            }
 
             if (booAllDone)
             {
-                statusLabel.Text = "YOU WON!";
+                statusLabel.Text = "YAY, YOU WON!";
+                Application.Current.Properties["GameStatus"] = "Done";
             }
             else
             {
