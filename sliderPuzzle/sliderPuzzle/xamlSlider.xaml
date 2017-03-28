@@ -37,15 +37,27 @@
           Grid.Column="0"
         />
 
+        <StackLayout
+          Grid.Row="0"
+          Grid.Column="1">
         <Label
           x:Name="statusLabel"
           Text="Click the button to begin."
           TextColor="#FFFFFF"
           BackgroundColor="Navy"
-          VerticalOptions="FillAndExpand"
-          Grid.Row="0"
-          Grid.Column="1"
         />
+          
+
+      <Button
+        x:Name="btnLoadPuzzle"
+        Clicked="OnBtnLoadPuzzle"
+        Text="Load the picture"
+        TextColor="#FFFFFF"
+        BackgroundColor ="#000000"
+        HorizontalOptions="Center"
+        />
+        
+        </StackLayout>
         
       </Grid>
       
@@ -150,15 +162,6 @@
           </ContentView.GestureRecognizers>
         </ContentView>
       </Grid>
-
-      <Button
-        x:Name="btnLoadPuzzle"
-        Clicked="OnBtnLoadPuzzle"
-        Text="Load the picture"
-        TextColor="#FFFFFF"
-        BackgroundColor ="#000000"
-        HorizontalOptions="Center"
-        />
       
     </StackLayout>
     </ScrollView>
